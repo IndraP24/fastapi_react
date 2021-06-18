@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { jsx } from '@emotion/react'
 import { ThemeProvider  } from '@chakra-ui/core';
 
 import Header from './components/Header';
