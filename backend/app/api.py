@@ -21,4 +21,4 @@ app.add_middleware(
 
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
-    return {"message": "Welcome toto do list!"}
+    return {"message": "Welcome to your todo list!"}
