@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import {
-    Box,
     Button,
-    Flex,
+    IconButton,
     Input,
     InputGroup,
     Modal,
@@ -12,16 +12,19 @@ import {
     ModalFooter,
     ModalHeader,
     ModalOverlay,
-    Stack,
+    VStack,
+    HStack,
     Text,
-    useDisclosure
+    useDisclosure,
+    StackDivider,
+    Spacer
 } from "@chakra-ui/react";
 
 const TodosContext = React.createContext({
     todos: [], fetchTodos: () => {}
 })
 
-
+/*
 function AddTodo() {
     const [item, setItem] = React.useState("")
     const {todos, fetchTodos} = React.useContext(TodosContext)
@@ -57,7 +60,7 @@ function AddTodo() {
         </form>
     )
 }
-
+*/
 
 function UpdateTodo({item, id}) {
     const {isOpen, onOpen, onClose} = useDisclosure()
@@ -76,7 +79,7 @@ function UpdateTodo({item, id}) {
 
     return (
         <>
-            <Button h="1.5rem" size="sm" onClick={onOpen}>Update</Button>
+            <IconButton icon={ < FaEdit/> } isRound="true" onClick={onOpen} />
             <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay/>
             <ModalContent>
@@ -96,7 +99,7 @@ function UpdateTodo({item, id}) {
                 </ModalBody>
 
                 <ModalFooter>
-                <Button h="1.5rem" size="sm" onClick={updateTodo}>Update Todo</Button>
+                <Button h="2rem" size="sm" onClick={updateTodo}>Update</Button>
                 </ModalFooter>
             </ModalContent>
             </Modal>
@@ -118,11 +121,11 @@ function DeleteTodo({id}) {
     }
 
     return (
-        <Button h="1.5rem" size="sm" onClick={deleteTodo}>Delete</Button>
+        <IconButton icon={ <FaTrash /> } isRound="true" onClick={deleteTodo} />
     )
 }
 
-
+/*
 function TodoHelper({item, id, fetchTodos}) {
     return (
         <Box p={1} shadow="sm">
@@ -136,6 +139,17 @@ function TodoHelper({item, id, fetchTodos}) {
                 </Text>
             </Flex>
         </Box>
+    )
+}*/
+
+function TodoHelper({item, id, fetchTodos}) {
+    return (
+        <HStack key={id}>
+            <Text>{item}</Text>
+            <Spacer />
+            <UpdateTodo item={item} id={id} fetchTodos={fetchTodos}/>
+            <DeleteTodo id={id} fetchTodos={fetchTodos}/>
+        </HStack>
     )
 }
 
@@ -155,12 +169,20 @@ export default function Todos() {
 
     return (
         <TodosContext.Provider value={{todos, fetchTodos}}>
-            <Stack spacing={5}>
+            <VStack 
+                divider={ <StackDivider /> } 
+                borderColor="gray.500" 
+                borderWidth="2px" 
+                p="4"
+                borderRadius="lg"
+                w="100%"
+                maxW={{base: "90vw", sm: "80vw", lg: "50vw", xl: "40vw"}}
+                alignItems="stretch"
+            >
                 {todos.map((todo) => (
                     <TodoHelper item={todo.item} id={todo.id} fetchTodos={fetchTodos} />
                 ))}
-            </Stack>
-            <AddTodo />
+            </VStack>
         </TodosContext.Provider>
     )
 }
