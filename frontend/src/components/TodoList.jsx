@@ -66,4 +66,18 @@ function AddTodo() {
             body: JSON.stringify(newTodo)
         }).then(fetchTodos)
     }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <InputGroup size="md">
+                <Input
+                    pr="4.5rem"
+                    type="text"
+                    placeholder="Add a todo item"
+                    aria-label="Add a todo item"
+                    onChange={handleInput}
+                />
+            </InputGroup>
+        </form>
+    )
 }
