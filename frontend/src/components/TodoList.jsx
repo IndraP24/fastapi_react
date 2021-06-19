@@ -137,7 +137,7 @@ export default function Todos() {
         <TodosContext.Provider value={{todos, fetchTodos}}>
             <Stack spacing={5}>
                 {todos.map((todo) => (
-                    <b>{todo.item}</b>
+                    <TodoHelper item={todo.item} id={todo.id} fetchTodos={fetchTodos} />
                 ))}
             </Stack>
             <AddTodo />
