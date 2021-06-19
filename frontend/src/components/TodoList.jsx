@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import {
+    Badge,
     Button,
     IconButton,
     Input,
@@ -17,7 +18,7 @@ import {
     Text,
     useDisclosure,
     StackDivider,
-    Spacer
+    Spacer,
 } from "@chakra-ui/react";
 
 const TodosContext = React.createContext({
@@ -114,9 +115,17 @@ export default function Todos() {
         fetchTodos()
     }, [])
 
+    if (!todos.length) {
+        return (
+            <Badge colorScheme="green" p="4" m="4" borderRadius="lg">
+                No Todos left for today, Yay!
+            </Badge>
+        )
+    }
+
     return (
         <TodosContext.Provider value={{todos, fetchTodos}}>
-            <VStack 
+            <VStack
                 divider={ <StackDivider /> } 
                 borderColor="gray.500" 
                 borderWidth="2px" 
