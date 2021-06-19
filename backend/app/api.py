@@ -12,7 +12,7 @@ origins = [
 todos = [
     {
         "id": "1",
-        "item": "Read a book!"
+        "item": ""
     },
 ]
 
