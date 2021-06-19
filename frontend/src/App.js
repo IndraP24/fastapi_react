@@ -5,7 +5,7 @@ import Todos from "./components/TodoList";
 function App() {
   return (
     <ChakraProvider>
-      <Heading>Todo Application</Heading>
+      <Heading align="center">Todo Application</Heading>
       <Todos />
     </ChakraProvider>
   );
