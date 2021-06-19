@@ -59,6 +59,25 @@ function AddTodo() {
 }
 
 
+function UpdateTodo({item, id}) {
+    const {isOpen, onOpen, onClose} = useDisclosure()
+    const [todo, setTodo] = useState(item)
+    const {fetchTodos} = React.useContext(TodosContext)
+
+    const updateTodo = async () => {
+        await fetch(`http://localhost:8000/todo/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ item: todo })
+        })
+        onClose()
+        await fetchTodos()
+    }
+
+    
+}
+
+
 export default function Todos() {
     const [todos, setTodos] = useState([])
     const fetchTodos = async () => {
