@@ -1,13 +1,13 @@
 import React from 'react';
-import { Heading, ChakraProvider } from '@chakra-ui/react';
+import { Heading, VStack } from '@chakra-ui/react';
 import Todos from "./components/TodoList";
 
 function App() {
   return (
-    <ChakraProvider>
-      <Heading align="center">Todo Application</Heading>
+    <VStack>
+      <Heading>Todo Application</Heading>
       <Todos />
-    </ChakraProvider>
+    </VStack>
   );
 }
 
