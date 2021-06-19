@@ -29,4 +29,18 @@ export default function Todos() {
         const todos = await response.json()
         setTodos(todos.data)
     }
+
+    useEffect(() => {
+        fetchTodos()
+    }, [])
+
+    return (
+        <TodosContext.Provider value={{todos, fetchTodos}}>
+            <Stack spacing={5}>
+                {todos.map((todo) => (
+                    <b>{todo.item}</b>
+                ))}
+            </Stack>
+        </TodosContext.Provider>
+    )
 }
