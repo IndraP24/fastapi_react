@@ -44,3 +44,9 @@ export default function Todos() {
         </TodosContext.Provider>
     )
 }
+
+
+function AddTodo() {
+    const [item, setItem] = React.useState("")
+    const {todos, fetchTodos} = React.useContext(TodosContext)
+}
