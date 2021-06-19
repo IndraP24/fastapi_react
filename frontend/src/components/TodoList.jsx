@@ -105,22 +105,6 @@ function UpdateTodo({item, id}) {
 }
 
 
-function TodoHelper({item, id, fetchTodos}) {
-    return (
-        <Box p={1} shadow="sm">
-            <Flex justify="space-between">
-                <Text mt={4} as="div">
-                    {item}
-                    <Flex align="end">
-                        <UpdateTodo item={item} id={id} fetchTodos={fetchTodos}/>
-                    </Flex>
-                </Text>
-            </Flex>
-        </Box>
-    )
-}
-
-
 function DeleteTodo({id}) {
     const {fetchTodos} = React.useContext(TodosContext)
 
@@ -137,6 +121,24 @@ function DeleteTodo({id}) {
         <Button h="1.5rem" size="sm" onClick={deleteTodo}>Delete</Button>
     )
 }
+
+
+function TodoHelper({item, id, fetchTodos}) {
+    return (
+        <Box p={1} shadow="sm">
+            <Flex justify="space-between">
+                <Text mt={4} as="div">
+                    {item}
+                    <Flex align="end">
+                        <UpdateTodo item={item} id={id} fetchTodos={fetchTodos}/>
+                        <DeleteTodo id={id} fetchTodos={fetchTodos}/>
+                    </Flex>
+                </Text>
+            </Flex>
+        </Box>
+    )
+}
+
 
 
 export default function Todos() {
