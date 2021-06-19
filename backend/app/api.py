@@ -9,6 +9,13 @@ origins = [
     "localhost:3000"
 ]
 
+todos = [
+    {
+        "id": "1",
+        "item": ""
+    },
+]
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,3 +29,8 @@ app.add_middleware(
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
     return {"message": "Welcome to your todo list!"}
+
+
+@app.get("/todo", tags=["todos"])
+async def get_todos() -> dict:
+    return {"data": todos}
