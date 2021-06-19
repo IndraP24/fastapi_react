@@ -74,7 +74,34 @@ function UpdateTodo({item, id}) {
         await fetchTodos()
     }
 
-    
+    return (
+        <>
+            <Button h="1.5rem" size="sm" onClick={onOpen}>Update</Button>
+            <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay/>
+            <ModalContent>
+                <ModalHeader>Update Todo</ModalHeader>
+                <ModalCloseButton/>
+                <ModalBody>
+                <InputGroup size="md">
+                    <Input
+                    pr="4.5rem"
+                    type="text"
+                    placeholder="Add a todo item"
+                    aria-label="Add a todo item"
+                    value={todo}
+                    onChange={event => setTodo(event.target.value)}
+                    />
+                </InputGroup>
+                </ModalBody>
+
+                <ModalFooter>
+                <Button h="1.5rem" size="sm" onClick={updateTodo}>Update Todo</Button>
+                </ModalFooter>
+            </ModalContent>
+            </Modal>
+        </>
+    )
 }
 
 
