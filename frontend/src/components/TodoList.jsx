@@ -16,3 +16,7 @@ import {
     Text,
     useDisclosure
 } from "@chakra-ui/react";
+
+const TodosContext = React.createContext({
+    todos: [], fetchTodos: () => {}
+})
