@@ -7,14 +7,19 @@ const TodosContext = React.createContext({
 
 
 function AddTodo() {
-    const [item, setItem] = React.useState("")
-    const {todos, fetchTodos} = React.useContext(TodosContext)
+    const [item, setItem] = React.useState("");
+    const {todos, fetchTodos} = React.useContext(TodosContext);
 
     const handleInput = event => {
         setItem(event.target.value)
     };
 
     const handleSubmit = () => {
+        if (!item) {
+            alert("Empty todos. Please add your tasks!")
+            return;
+        }
+
         const newTodo = {
             "id": todos.length + 1,
             "item": item
@@ -26,6 +31,8 @@ function AddTodo() {
             body: JSON.stringify(newTodo)
         }).then(fetchTodos)
     };
+
+
 
     return (
         <form onSubmit={handleSubmit}>
