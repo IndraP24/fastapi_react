@@ -38,7 +38,7 @@ function AddTodo() {
                     value={item}
                     onChange={handleInput}
                 />
-                <Button colorScheme="pink" px="8" type="submit">
+                <Button colorScheme="pink" variant="solid" px="8" type="submit">
                     Add Todo
                 </Button>
             </HStack>
