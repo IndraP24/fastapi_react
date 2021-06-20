@@ -72,14 +72,15 @@ function UpdateTodo({item, id}) {
 }
 
 
-function DeleteTodo({id}) {
+function DeleteTodo({item, id}) {
+    const [todo] = useState(item)
     const {fetchTodos} = React.useContext(TodosContext)
 
     const deleteTodo = async () => {
         await fetch(`http://localhost:8000/todo/${id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
-            body: { "id": id }
+            body: JSON.stringify({ item: todo })
         })
         await fetchTodos()
     }
@@ -96,7 +97,7 @@ function TodoHelper({item, id, fetchTodos}) {
             <Text>{item}</Text>
             <Spacer />
             <UpdateTodo item={item} id={id} fetchTodos={fetchTodos}/>
-            <DeleteTodo id={id} fetchTodos={fetchTodos}/>
+            <DeleteTodo item={item} id={id} fetchTodos={fetchTodos}/>
         </HStack>
     )
 }
@@ -110,6 +111,10 @@ export default function Todos() {
         const todos = await response.json()
         setTodos(todos.data)
     }
+
+    /*function addTodo(todo) {
+        setTodos([...todos.todo])
+    }*/
 
     useEffect(() => {
         fetchTodos()
