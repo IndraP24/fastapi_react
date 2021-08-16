@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://indrap24.github.io/fastapi_react/frontend/",
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
     "@chakra-ui/react": "^1.6.4",
@@ -20,6 +21,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
